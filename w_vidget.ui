@@ -123,6 +123,31 @@
     </item>
     <item>
      <property name="text">
+      <string>Владивосток</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Петропавловск-Камчатский</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Сочи</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Новосибирск</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Севастополь</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
       <string>Санкт-Петербург</string>
      </property>
     </item>
