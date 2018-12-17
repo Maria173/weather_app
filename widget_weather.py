@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtGui import QPixmap
+from PyQt5 import QtCore
+from PyQt5.QtGui import QPixmap, QImage
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QMainWindow
@@ -10,7 +11,16 @@ class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('w_vidget.ui', self)
-        self.pict.setPixmap(QPixmap('sun.jpg')) # Тут дефолтная картинка
+        self.dict_conditions = {'тепло': 'sun.png', 'прохладно': 'clouds.png',
+                                'дождь': 'rain.png', 'ливень': 'rain.png',
+                                'снег': 'snow.png', 'гроза': 'thunder.png',
+                                'ok': 'def.png'}
+        self.image_profile = QImage('default.jpg')
+        self.image_profile = self.image_profile.scaled(700, 700,
+        aspectRatioMode=QtCore.Qt.KeepAspectRatio,
+        transformMode=QtCore.Qt.SmoothTransformation)
+        self.pict.setPixmap(QPixmap.fromImage(self.image_profile))
+        self.show()
         self.btn.clicked.connect(self.run)
 
     def run(self):
@@ -19,6 +29,8 @@ class MyWidget(QMainWindow):
             url = self.getSelectedCityUrl()
             self.rq = Request(url)
             self.rq.onSuccess(self.getCityWeather)
+        else:
+            self.main_text.setText('Пожалуйста, укажите \nгород.')
 
     def getSelectedCityUrl(self):
         return 'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H&q={}'.format(self.value)
@@ -34,6 +46,13 @@ class MyWidget(QMainWindow):
         self.req.onSuccess(self.showTemp)
         self.req.onSuccess(self.showDateTime)
         self.req.onSuccess(self.showWhatToWear)
+        self.image_profile = QImage(self.dict_conditions[self.generation_by_text])
+        self.image_profile = self.image_profile.scaled(600, 600,
+        aspectRatioMode=QtCore.Qt.KeepAspectRatio,
+        transformMode=QtCore.Qt.SmoothTransformation)
+        self.pict.setPixmap(QPixmap.fromImage(self.image_profile))
+        self.repaint()
+
 
     def showTemp(self):
         self.temperature.setText(str(self.req.getTemp()))
