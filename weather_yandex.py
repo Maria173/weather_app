@@ -99,6 +99,9 @@ class Request:
         self.generation_by_humidity = compare_humidity(self, self.humidity)
         self.generation_by_text = compare_conditions(self, self.weather_text)
 
+    def getConditions(self):
+        return self.generation_by_text
+
     def getTemp(self):
         return self.temp
 

@@ -29,6 +29,7 @@ class MyWidget(QMainWindow):
             url = self.getSelectedCityUrl()
             self.rq = Request(url)
             self.rq.onSuccess(self.getCityWeather)
+
         else:
             self.main_text.setText('Пожалуйста, укажите \nгород.')
 
@@ -46,10 +47,14 @@ class MyWidget(QMainWindow):
         self.req.onSuccess(self.showTemp)
         self.req.onSuccess(self.showDateTime)
         self.req.onSuccess(self.showWhatToWear)
-        self.image_profile = QImage(self.dict_conditions[self.generation_by_text])
+        self.req.onSuccess(self.change_Image)
+
+    def change_Image(self):
+
+        self.image_profile = QImage(self.dict_conditions[self.req.getConditions()])
         self.image_profile = self.image_profile.scaled(600, 600,
-        aspectRatioMode=QtCore.Qt.KeepAspectRatio,
-        transformMode=QtCore.Qt.SmoothTransformation)
+                                                       aspectRatioMode=QtCore.Qt.KeepAspectRatio,
+                                                       transformMode=QtCore.Qt.SmoothTransformation)
         self.pict.setPixmap(QPixmap.fromImage(self.image_profile))
         self.repaint()
 
