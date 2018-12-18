@@ -16,9 +16,9 @@ class MyWidget(QMainWindow):
                                 'снег': 'snow.png', 'гроза': 'thunder.png',
                                 'ok': 'def.png'}
         self.image_profile = QImage('default.jpg')
-        self.image_profile = self.image_profile.scaled(700, 700,
+        self.image_profile = self.image_profile.scaled(200, 00,
         aspectRatioMode=QtCore.Qt.KeepAspectRatio,
-        transformMode=QtCore.Qt.SmoothTransformation)
+        transformMode=QtCore.Qt.SmoothTransformation)r
         self.pict.setPixmap(QPixmap.fromImage(self.image_profile))
         self.show()
         self.btn.clicked.connect(self.run)
@@ -52,7 +52,7 @@ class MyWidget(QMainWindow):
     def change_Image(self):
 
         self.image_profile = QImage(self.dict_conditions[self.req.getConditions()])
-        self.image_profile = self.image_profile.scaled(600, 600,
+        self.image_profile = self.image_profile.scaled(200, 200,
                                                        aspectRatioMode=QtCore.Qt.KeepAspectRatio,
                                                        transformMode=QtCore.Qt.SmoothTransformation)
         self.pict.setPixmap(QPixmap.fromImage(self.image_profile))

@@ -49,7 +49,7 @@ class Request:
         self.humidity = self.resp_obj[0]['RelativeHumidity']
         Date = LocalObservationDateTime[:10]
         Time = LocalObservationDateTime[11:19]
-        self.date_time = Date + ' ' + Time
+        self.date_time = Date + '\n' + Time
 
         def compare_temp(self, t):
             if t < -30.0:
@@ -103,7 +103,7 @@ class Request:
         return self.generation_by_text
 
     def getTemp(self):
-        return self.temp
+        return str(self.temp) + '°C'
 
     def getDateTime(self):
         return self.date_time
