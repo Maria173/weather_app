@@ -6,29 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>873</height>
+    <width>538</width>
+    <height>581</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(213, 213, 213)</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="main_text">
     <property name="geometry">
      <rect>
-      <x>8</x>
-      <y>576</y>
-      <width>905</width>
-      <height>265</height>
+      <x>20</x>
+      <y>380</y>
+      <width>561</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>36</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <pointsize>22</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="mouseTracking">
@@ -38,51 +41,29 @@
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>main text</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="pict">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>248</y>
-      <width>625</width>
-      <height>297</height>
+      <x>170</x>
+      <y>130</y>
+      <width>201</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="btn">
     <property name="geometry">
      <rect>
-      <x>16</x>
-      <y>72</y>
-      <width>145</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>18</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>OK</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="citylist">
-    <property name="geometry">
-     <rect>
-      <x>16</x>
-      <y>8</y>
-      <width>273</width>
-      <height>41</height>
+      <x>40</x>
+      <y>70</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -92,9 +73,37 @@
       <weight>50</weight>
       <italic>false</italic>
       <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="citylist">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>18</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
       <strikeout>false</strikeout>
       <kerning>false</kerning>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(255, 255, 255)</string>
     </property>
     <property name="currentText">
      <string>Выберите город</string>
@@ -165,47 +174,47 @@
      </property>
     </item>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QLabel" name="temperature">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>0</y>
-      <width>497</width>
-      <height>201</height>
+      <x>220</x>
+      <y>30</y>
+      <width>121</width>
+      <height>71</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="temperature">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>26</pointsize>
-         <italic>true</italic>
-        </font>
-       </property>
-       <property name="text">
-        <string>temp</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="date_time">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>28</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>date time</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>16</pointsize>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="date_time">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>50</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -213,8 +222,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>942</width>
-     <height>18</height>
+     <width>538</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
