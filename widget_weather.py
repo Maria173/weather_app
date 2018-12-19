@@ -5,40 +5,54 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QMainWindow
 from weather_yandex import Request
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 
 
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('w_vidget.ui', self)
-        self.dict_conditions = {'тепло': 'sun.png', 'прохладно': 'clouds.png',
-                                'дождь': 'rain.png', 'ливень': 'rain.png',
-                                'снег': 'snow.png', 'гроза': 'thunder.png',
-                                'ok': 'def.png'}
-        self.image_profile = QImage('default.jpg')
-        self.image_profile = self.image_profile.scaled(200, 00,
+        intro = 'Думаю, будет не лишним захватить с собой '
+        self.dict_conditions = {intro + 'солнечные очки.': 'sun.png',
+                                intro + 'шарф и головной убор.': 'clouds.png',
+                                intro + 'зонт и резиновые сапоги.': 'rain.png',
+                                intro + 'дождевик и резиновые сапоги.': 'rain.png',
+                                intro + 'высокие сапоги и тёплый головной убор.': 'snow.png',
+                                intro + 'возможность взять такси (на улице гроза, и я очень волнуюсь за тебя)!':
+                                    'thunder.png',
+                                intro + 'хорошее настроение и наслаждаться погодой!': 'def.png'}
+        self.image_profile = QImage('kevin.png')
+        self.main_text.setText('Привет! Меня зовут Кевин :)\nХочешь узнать погоду? Тогда укажи город,\nв котором находишься!')
+        self.main_text.setAlignment(Qt.AlignCenter)
+        self.image_profile = self.image_profile.scaled(200, 200,
         aspectRatioMode=QtCore.Qt.KeepAspectRatio,
-        transformMode=QtCore.Qt.SmoothTransformation)r
+        transformMode=QtCore.Qt.SmoothTransformation)
         self.pict.setPixmap(QPixmap.fromImage(self.image_profile))
         self.show()
         self.btn.clicked.connect(self.run)
 
     def run(self):
         self.value = self.citylist.currentText()
-        if self.value != 'Выберите город':
+        if self.value != 'Выбери город':
             url = self.getSelectedCityUrl()
             self.rq = Request(url)
             self.rq.onSuccess(self.getCityWeather)
 
         else:
-            self.main_text.setText('Пожалуйста, укажите \nгород.')
+            # self.main_text.setWordWrap(True)
+            self.main_text.setText('Пожалуйста, укажи город :)')
+
 
     def getSelectedCityUrl(self):
-        return 'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H&q={}'.format(self.value)
+        return 'http://dataservice.accuweather.com/locations/v1/cities/search?' \
+               'apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H&q={}'.format(self.value)
 
     def getWeatherUrl(self):
         key = self.rq.getKey()
-        return "http://dataservice.accuweather.com/currentconditions/v1/{}.json?language=ru-ru&details=true&apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H".format(key)
+        return "http://dataservice.accuweather.com/currentconditions/v1/{}.json?" \
+               "language=ru-ru&details=true&apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H".format(key)
 
     def getCityWeather(self):
         url = self.getWeatherUrl()
@@ -67,6 +81,7 @@ class MyWidget(QMainWindow):
 
     def showWhatToWear(self):
         self.main_text.setText(str(self.req.what_to_wear()))
+        self.main_text.setWordWrap(True)
 
 
 if __name__ == '__main__':
