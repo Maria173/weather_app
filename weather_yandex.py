@@ -53,51 +53,50 @@ class Request:
 
         def compare_temp(self, t):
             if t < -30.0:
-                return 'очень холодно'
+                return 'пуховик или шубу; приветствуется многослойность.'
             elif (t >= -30.0) and (t < -20.0):
-                return 'морозно'
+                return 'куртку на синтепоне или дублёнку.'
             elif (t >= -20.0) and (t < -10.0):
-                return 'холодно'
+                return 'шерстяное пальто или шубу из искусственного меха.'
             elif (t >= -10.0) and (t < 0.0):
-                return 'прохладно'
-            elif (t >= 0.0) and (t < -0.0):
-                return 'нормально'
+                return 'пальто или куртку.'
+            elif (t >= 0.0) and (t < 10.0):
+                return 'теплый плащ или лёгкое пальто.'
             elif (t >= 10.0) and (t < 20.0):
-                return 'тепло'
+                return 'ветровку или джинсовую куртку.'
             elif (t >= 20.0) and (t < 30.0):
-                return 'жарко'
+                return 'что-нибудь лёгкое из хлопка или смесовых тканей.'
             elif t >= 30.0:
-                return 'очень жарко'
+                return 'что-нибудь лёгкое из натуральных тканей (лен, хлопок, шелк и т.д.).'
 
         def compare_humidity(self, humidity):
-            if humidity == 0:
-                return '0%'
-            elif (humidity > 0) and (humidity <= 33):
-                return '20%'
+            if (humidity >= 0) and (humidity <= 33):
+                return 'пару бутылочек с водой и влажные салфетки :)'
             elif (humidity > 33) and (humidity <= 66):
-                return '50%'
+                return 'бутылочку с водой и пачку бумажных салфеток :)'
             elif (humidity > 66) and (humidity <= 100):
-                return '80%'
+                return 'пачку бумажныых салфеток :)'
 
         def compare_conditions(self, text):
             if 'солнечно' in text or 'ясно' in text:
-                return 'тепло'
+                return 'солнечные очки.'
             elif 'облачно' in text or 'пасмурно' in text or 'ветренно' in text or 'ветер' in text:
-                return 'прохладно'
+                return 'шарф и головной убор.'
             elif 'дождь' in text:
-                return 'дождь'
+                return 'зонт и резиновые сапоги.'
             elif 'ливень' in text:
-                return 'ливень'
+                return 'дождевик и резиновые сапоги.'
             elif 'снег' in text or 'лёд' in text or 'лед' in text:
-                return 'снег'
+                return 'высокие сапоги и тёплый головной убор.'
             elif 'гроза' in text or 'гром' in text or 'гром' in text:
-                return 'гроза'
+                return 'возможность взять такси (на улице гроза, и я очень волнуюсь за тебя)!'
             else:
-                return 'ok'
+                return 'хорошее настроение и наслаждаться погодой!'
 
-        self.generation_by_temp = compare_temp(self, self.temp)
-        self.generation_by_humidity = compare_humidity(self, self.humidity)
-        self.generation_by_text = compare_conditions(self, self.weather_text)
+        self.generation_by_temp = 'Из одежды рекомендую тебе выбрать ' + compare_temp(self, self.temp)
+        self.generation_by_humidity = 'Советую не забыть про ' + compare_humidity(self, self.humidity)
+        self.generation_by_text = 'Думаю, будет не лишним захватить с собой ' + \
+                                  compare_conditions(self, self.weather_text)
 
     def getConditions(self):
         return self.generation_by_text
@@ -109,7 +108,7 @@ class Request:
         return self.date_time
 
     def what_to_wear(self):
-        return self.generation_by_temp + ' ' + self.generation_by_humidity + ' ' + self.generation_by_text
+        return self.generation_by_temp + ' ' + self.generation_by_text + ' ' + self.generation_by_humidity
 
     def onSuccess(self, callback):
         self.callbacks.append(callback)
