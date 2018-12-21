@@ -35,13 +35,12 @@ class MyWidget(QMainWindow):
 
     def run(self):
         self.value = self.citylist.currentText()
-        if self.value != 'Выбери город':
+        if self.value != 'Выберите город':
             url = self.getSelectedCityUrl()
             self.rq = Request(url)
             self.rq.onSuccess(self.getCityWeather)
 
         else:
-            # self.main_text.setWordWrap(True)
             self.main_text.setText('Пожалуйста, укажи город :)')
 
 
