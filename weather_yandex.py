@@ -71,11 +71,11 @@ class Request:
 
         def compare_humidity(self, humidity):
             if (humidity >= 0) and (humidity <= 33):
-                return 'пару бутылочек с водой и влажные салфетки :)'
+                return 'пару бутылочек с водой и влажные салфетки, потому что на улице очень сухо!\n(влажность около 10%)'
             elif (humidity > 33) and (humidity <= 66):
-                return 'бутылочку с водой и пачку бумажных салфеток :)'
+                return 'бутылочку с водой и пачку бумажных салфеток:)'
             elif (humidity > 66) and (humidity <= 100):
-                return 'пачку бумажныых салфеток :)'
+                return 'пачку бумажных салфеток, потому что на улице очень влажно!\n(влажность около 90%)'
 
         def compare_conditions(self, text):
             if 'солнечно' in text or 'ясно' in text:

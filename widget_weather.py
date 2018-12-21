@@ -47,12 +47,12 @@ class MyWidget(QMainWindow):
 
     def getSelectedCityUrl(self):
         return 'http://dataservice.accuweather.com/locations/v1/cities/search?' \
-               'apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H&q={}'.format(self.value)
+               'apikey=icFNU4x13nHy5dJy0mIdXIAYi0E8TJF8&q={}'.format(self.value)
 
     def getWeatherUrl(self):
         key = self.rq.getKey()
         return "http://dataservice.accuweather.com/currentconditions/v1/{}.json?" \
-               "language=ru-ru&details=true&apikey=2wAZfZ1bYGOAIK6xmWXUBnAxVHwt952H".format(key)
+               "language=ru-ru&details=true&apikey=icFNU4x13nHy5dJy0mIdXIAYi0E8TJF8".format(key)
 
     def getCityWeather(self):
         url = self.getWeatherUrl()
